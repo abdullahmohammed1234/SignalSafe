@@ -780,4 +780,412 @@ export const api = {
       return false;
     }
   },
+
+  // ======== PHASE 5: AUTONOMOUS INTELLIGENCE ========
+
+  // Model Drift APIs
+  async getDriftStatus(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/model/drift`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching drift status:', error);
+      return null;
+    }
+  },
+
+  async detectDrift(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/model/drift/detect`, { method: 'POST' });
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error detecting drift:', error);
+      return null;
+    }
+  },
+
+  async getDriftHistory(limit: number = 50): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/model/drift/history?limit=${limit}`);
+      if (!response.ok) return [];
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching drift history:', error);
+      return [];
+    }
+  },
+
+  // Model Version & Retraining APIs
+  async getModelVersion(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/model/version`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching model version:', error);
+      return null;
+    }
+  },
+
+  async retrainModel(reason?: string): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/model/retrain`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason }),
+      });
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error retraining model:', error);
+      return null;
+    }
+  },
+
+  async getRetrainStatus(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/model/retrain/status`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching retrain status:', error);
+      return null;
+    }
+  },
+
+  // Adaptive Weights APIs
+  async getEnsembleWeights(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/model/weights`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching ensemble weights:', error);
+      return null;
+    }
+  },
+
+  async adaptWeights(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/model/weights/adapt`, { method: 'POST' });
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error adapting weights:', error);
+      return null;
+    }
+  },
+
+  async getWeightsHistory(limit: number = 50): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/model/weights/history?limit=${limit}`);
+      if (!response.ok) return [];
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching weights history:', error);
+      return [];
+    }
+  },
+
+  // Counterfactual Simulation APIs
+  async runSimulation(params: {
+    interventionType: string;
+    timeShiftMinutes?: number;
+    strength?: number;
+    targetClusterId?: string;
+  }): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/simulate/intervention`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params),
+      });
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error running simulation:', error);
+      return null;
+    }
+  },
+
+  async compareInterventions(risk: number = 50, timeShift: number = -30): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/simulate/interventions/compare?risk=${risk}&timeShift=${timeShift}`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error comparing interventions:', error);
+      return null;
+    }
+  },
+
+  async getOptimalIntervention(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/simulate/optimal`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching optimal intervention:', error);
+      return null;
+    }
+  },
+
+  async getTimingEffectiveness(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/simulate/timing`);
+      if (!response.ok) return [];
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching timing effectiveness:', error);
+      return [];
+    }
+  },
+
+  async getSimulationHistory(limit: number = 20): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/simulate/history?limit=${limit}`);
+      if (!response.ok) return [];
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching simulation history:', error);
+      return [];
+    }
+  },
+
+  // Strategy Optimizer APIs
+  async getStrategicRecommendations(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/strategy/recommendations`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching strategic recommendations:', error);
+      return null;
+    }
+  },
+
+  async getStrategyExecutive(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/strategy/executive`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching strategy executive:', error);
+      return null;
+    }
+  },
+
+  async getActionTimeline(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/strategy/timeline`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching action timeline:', error);
+      return null;
+    }
+  },
+
+  // Intervention Impact APIs
+  async getInterventionEffectiveness(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/intervention/effectiveness`);
+      if (!response.ok) return [];
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching intervention effectiveness:', error);
+      return [];
+    }
+  },
+
+  async getInterventionHistory(limit: number = 50): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/intervention/history?limit=${limit}`);
+      if (!response.ok) return [];
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching intervention history:', error);
+      return [];
+    }
+  },
+
+  async recordIntervention(params: {
+    actionType: string;
+    preRisk: number;
+    postRisk: number;
+    strength?: number;
+    targetCluster?: string;
+  }): Promise<boolean> {
+    try {
+      const response = await fetch(`${API_URL}/api/intervention/record`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params),
+      });
+      return response.ok;
+    } catch (error) {
+      console.error('Error recording intervention:', error);
+      return false;
+    }
+  },
+
+  // Evolution Forecast APIs
+  async getForecasts(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/forecast`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching forecasts:', error);
+      return null;
+    }
+  },
+
+  async getCriticalForecasts(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/forecast/critical`);
+      if (!response.ok) return [];
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching critical forecasts:', error);
+      return [];
+    }
+  },
+
+  async getForecastTimeline(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/forecast/timeline`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching forecast timeline:', error);
+      return null;
+    }
+  },
+
+  // Escalation State APIs
+  async getEscalationState(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/escalation`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching escalation state:', error);
+      return null;
+    }
+  },
+
+  async updateEscalationState(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/escalation/update`, { method: 'POST' });
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error updating escalation state:', error);
+      return null;
+    }
+  },
+
+  // Robustness APIs
+  async getRobustnessStatus(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/robustness`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching robustness status:', error);
+      return null;
+    }
+  },
+
+  async runRobustnessCheck(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/robustness/check`, { method: 'POST' });
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error running robustness check:', error);
+      return null;
+    }
+  },
+
+  async getAnomalies(type?: string, limit: number = 20): Promise<any[]> {
+    try {
+      const url = type 
+        ? `${API_URL}/api/system/anomalies?type=${type}&limit=${limit}`
+        : `${API_URL}/api/system/anomalies?limit=${limit}`;
+      const response = await fetch(url);
+      if (!response.ok) return [];
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching anomalies:', error);
+      return [];
+    }
+  },
+
+  // System Status APIs
+  async getSystemStatus(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/status`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error('Error fetching system status:', error);
+      return null;
+    }
+  },
+
+  async configureWorkers(count: number): Promise<boolean> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/workers`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ count }),
+      });
+      return response.ok;
+    } catch (error) {
+      console.error('Error configuring workers:', error);
+      return false;
+    }
+  },
+
+  async clearCache(): Promise<boolean> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/cache/clear`, { method: 'POST' });
+      return response.ok;
+    } catch (error) {
+      console.error('Error clearing cache:', error);
+      return false;
+    }
+  },
 };

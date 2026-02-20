@@ -11,6 +11,10 @@ export default function Navigation() {
     { href: '/dashboard', label: 'Overview', icon: '' },
     { href: '/dashboard/strategic', label: 'Strategic', icon: '' },
     { href: '/dashboard/analyst', label: 'Analyst', icon: '' },
+    { href: '/dashboard/autonomy', label: 'Autonomy', icon: '' },
+    { href: '/dashboard/simulation', label: 'Simulation', icon: '' },
+    { href: '/dashboard/forecast', label: 'Forecast', icon: '' },
+    { href: '/dashboard/system', label: 'System', icon: '' },
     { href: '/dashboard/replay', label: 'Replay', icon: '' },
     { href: '/dashboard/insights', label: 'Insights', icon: '' },
   ];
@@ -29,8 +33,8 @@ export default function Navigation() {
           </div>
         </div>
         
-        {/* Navigation Tabs */}
-        <div className="flex items-center gap-1 bg-gray-800/50 p-1 rounded-xl">
+        {/* Navigation Tabs - Scrollable for smaller screens */}
+        <div className="flex items-center gap-3 bg-gray-800/50 p-3 rounded-xl overflow-x-auto max-w-xl scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
