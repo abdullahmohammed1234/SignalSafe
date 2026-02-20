@@ -20,6 +20,9 @@ export default function Navigation() {
     { href: '/dashboard/system', label: 'System', icon: '' },
     { href: '/dashboard/replay', label: 'Replay', icon: '' },
     { href: '/dashboard/insights', label: 'Insights', icon: '' },
+    { href: '/dashboard/ecosystem', label: 'Ecosystem', icon: '' },
+    { href: '/dashboard/timelines', label: 'Timelines', icon: '' },
+    { href: '/dashboard/stress-lab', label: 'Stress Lab', icon: '' },
   ];
   
   return (

@@ -32,6 +32,11 @@ export default function Dashboard() {
   } | null>(null);
   const [baseline, setBaseline] = useState<Baseline | null>(null);
   const [riskHistory, setRiskHistory] = useState<RiskHistory[]>([]);
+  
+  // Phase 7 state
+  const [stabilityIndex, setStabilityIndex] = useState<any>(null);
+  const [systemicAlerts, setSystemicAlerts] = useState<any[]>([]);
+  const [metaScore, setMetaScore] = useState<any>(null);
 
   // Initialize data and socket connection
   useEffect(() => {
@@ -121,6 +126,27 @@ export default function Dashboard() {
     };
     fetchNarrativeDetails();
   }, [selectedNarrative]);
+
+  // Fetch Phase 7 data
+  useEffect(() => {
+    const fetchPhase7Data = async () => {
+      try {
+        const stability = await api.getStabilityIndex();
+        if (stability) setStabilityIndex(stability);
+        
+        const alerts = await api.getSystemicAlerts();
+        if (alerts?.alerts) setSystemicAlerts(alerts.alerts);
+        
+        const meta = await api.getMetaIntelligenceScore();
+        if (meta) setMetaScore(meta);
+      } catch (error) {
+        console.error('Error fetching Phase 7 data:', error);
+      }
+    };
+    fetchPhase7Data();
+    const interval = setInterval(fetchPhase7Data, 60000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSimulatorToggle = async () => {
     try {
@@ -286,6 +312,61 @@ export default function Dashboard() {
             narrativeSpreadSpeed={narrativeSpreadSpeed}
             clusters={clusters}
           />
+        </div>
+
+        {/* Phase 7: Strategic Stability Index Widget */}
+        <div className="col-span-1 bg-gray-800/50 rounded-lg p-4 border border-indigo-500/30">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-semibold text-gray-300">Strategic Stability</h3>
+            <Link href="/dashboard/strategic" className="text-xs text-indigo-400 hover:text-indigo-300">
+              View Details →
+            </Link>
+          </div>
+          {stabilityIndex ? (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className={`text-3xl font-bold ${
+                  stabilityIndex.overallIndex >= 80 ? 'text-green-400' :
+                  stabilityIndex.overallIndex >= 60 ? 'text-yellow-400' :
+                  stabilityIndex.overallIndex >= 40 ? 'text-orange-400' : 'text-red-400'
+                }`}>
+                  {stabilityIndex.overallIndex}
+                </span>
+                <span className="text-xs text-gray-400">{stabilityIndex.interpretation}</span>
+              </div>
+              <div className="text-xs text-gray-400">
+                Trend: <span className={stabilityIndex.stabilityTrend === 'improving' ? 'text-green-400' : stabilityIndex.stabilityTrend === 'declining' ? 'text-red-400' : 'text-gray-300'}>{stabilityIndex.stabilityTrend}</span>
+              </div>
+            </div>
+          ) : (
+            <div className="text-sm text-gray-500">Loading...</div>
+          )}
+        </div>
+
+        {/* Phase 7: Systemic Alerts Widget */}
+        <div className="col-span-1 bg-gray-800/50 rounded-lg p-4 border border-red-500/30">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-semibold text-gray-300">Systemic Alerts</h3>
+            <span className="text-xs px-2 py-0.5 bg-red-500/20 text-red-400 rounded">
+              {systemicAlerts?.length || 0}
+            </span>
+          </div>
+          {systemicAlerts && systemicAlerts.length > 0 ? (
+            <div className="space-y-2">
+              {systemicAlerts.slice(0, 3).map((alert: any, idx: number) => (
+                <div key={idx} className={`text-xs p-2 rounded ${
+                  alert.alertLevel === 'Critical' ? 'bg-red-900/30 text-red-300' :
+                  alert.alertLevel === 'High' ? 'bg-orange-900/30 text-orange-300' :
+                  'bg-yellow-900/30 text-yellow-300'
+                }`}>
+                  <div className="font-medium">{alert.type.replace(/_/g, ' ')}</div>
+                  <div className="opacity-70">{alert.affectedNarratives?.length || 0} narratives</div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-sm text-gray-500">No active alerts</div>
+          )}
         </div>
 
         {/* Cluster Graph - full width */}

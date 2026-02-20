@@ -1188,4 +1188,289 @@ export const api = {
       return false;
     }
   },
+
+  // ============================================
+  // PHASE 7: Strategic Simulation & Meta-Intelligence
+  // ============================================
+
+  // Timeline Simulation
+  async getTimelineSimulation(narrativeId: string): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/simulation/timelines`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ narrativeId }),
+      });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting timeline simulation:', error);
+      return null;
+    }
+  },
+
+  async runBulkSimulation(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/simulation/bulk`, { method: 'POST' });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error running bulk simulation:', error);
+      return null;
+    }
+  },
+
+  // Cascade Impact
+  async getCascadeImpact(narrativeId: string, interventionType?: string): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/impact/cascade`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ narrativeId, interventionType }),
+      });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting cascade impact:', error);
+      return null;
+    }
+  },
+
+  async getCrossNarrativeCascades(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/impact/cross-narrative`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting cross-narrative cascades:', error);
+      return null;
+    }
+  },
+
+  // Ecosystem Graph
+  async getEcosystemGraph(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/ecosystem/graph`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting ecosystem graph:', error);
+      return null;
+    }
+  },
+
+  async getEcosystemStatistics(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/ecosystem/statistics`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting ecosystem statistics:', error);
+      return null;
+    }
+  },
+
+  // Systemic Alerts
+  async getSystemicAlerts(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/systemic/alerts`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting systemic alerts:', error);
+      return null;
+    }
+  },
+
+  async detectCascades(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/systemic/detect`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error detecting cascades:', error);
+      return null;
+    }
+  },
+
+  // Strategic Stability Index
+  async getStabilityIndex(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/stability/index`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting stability index:', error);
+      return null;
+    }
+  },
+
+  async getStabilitySnapshot(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/stability/snapshot`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting stability snapshot:', error);
+      return null;
+    }
+  },
+
+  // Long-Horizon Forecast
+  async getLongRangeForecast(narrativeId?: string, horizonDays?: number): Promise<any> {
+    try {
+      let url = `${API_URL}/api/forecast/long-range`;
+      const params = new URLSearchParams();
+      if (narrativeId) params.append('narrativeId', narrativeId);
+      if (horizonDays) params.append('horizonDays', horizonDays.toString());
+      if (params.toString()) url += `?${params.toString()}`;
+      
+      const response = await fetch(url);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting long-range forecast:', error);
+      return null;
+    }
+  },
+
+  // Stress Testing
+  async runStressTest(shockType: string): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/stress-test`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ shockType }),
+      });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error running stress test:', error);
+      return null;
+    }
+  },
+
+  async runStressTestSuite(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/stress-suite`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error running stress test suite:', error);
+      return null;
+    }
+  },
+
+  async getResilienceScorecard(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/resilience`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting resilience scorecard:', error);
+      return null;
+    }
+  },
+
+  // Cooperative Intelligence
+  async validateIntelligence(packet: any): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/intelligence/validate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(packet),
+      });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error validating intelligence:', error);
+      return null;
+    }
+  },
+
+  async getIntelligenceSources(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/intelligence/sources`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting intelligence sources:', error);
+      return null;
+    }
+  },
+
+  async registerIntelligenceSource(sourceId: string, name: string, protocols?: string[]): Promise<boolean> {
+    try {
+      const response = await fetch(`${API_URL}/api/intelligence/register-source`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sourceId, name, protocols }),
+      });
+      return response.ok;
+    } catch (error) {
+      console.error('Error registering intelligence source:', error);
+      return false;
+    }
+  },
+
+  // Ethical Assessment
+  async getEthicalAssessment(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/ethical/assessment`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting ethical assessment:', error);
+      return null;
+    }
+  },
+
+  async ethicalCheck(narrativeId: string, interventionType: string): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/ethical/check`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ narrativeId, interventionType }),
+      });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error performing ethical check:', error);
+      return null;
+    }
+  },
+
+  // Meta-Evaluation
+  async getMetaIntelligenceScore(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/meta/score`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting meta-intelligence score:', error);
+      return null;
+    }
+  },
+
+  async getMetaPerformance(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/meta/performance`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting meta performance:', error);
+      return null;
+    }
+  },
+
+  async getMetaSummary(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/meta/summary`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting meta summary:', error);
+      return null;
+    }
+  },
 };
