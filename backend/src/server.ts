@@ -20,6 +20,7 @@ import adversarialRoutes from './routes/adversarial.routes';
 import systemRoutes from './routes/system.routes';
 import phase4Routes from './routes/phase4.routes';
 import phase5Routes from './routes/phase5.routes';
+import phase6Routes from './routes/phase6.routes';
 import replayRoutes from './routes/replay.routes';
 
 // Import models to ensure they're registered
@@ -65,6 +66,7 @@ app.use('/api/system', systemRoutes);
 app.use('/api/phase4', phase4Routes);
 app.use('/api', phase5Routes);
 app.use('/api/replay', replayRoutes);
+app.use('/api', phase6Routes);
 
 // Health check
 app.get('/health', (req, res) => {

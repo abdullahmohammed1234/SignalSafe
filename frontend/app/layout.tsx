@@ -16,7 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-signal-black min-h-screen">
         <Navigation />
-        {children}
+        <main className="p-8 pt-24">
+          {children}
+        </main>
       </body>
     </html>
   )
