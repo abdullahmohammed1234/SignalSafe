@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --signal-black: #0B0F14;
+  --signal-dark: #141A21;
+  --signal-gray: #1E2630;
+  --signal-amber: #FFB020;
+  --signal-amber-glow: rgba(255, 176, 32, 0.25);
+  --signal-red: #FF4444;
+  --signal-red-glow: rgba(255, 68, 68, 0.25);
+  --signal-emerald: #10B981;
+  --signal-emerald-glow: rgba(16, 185, 129, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--signal-black);
+  color: #E5E7EB;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(20, 26, 33, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--signal-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--signal-gray);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2D3748;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Gauge specific styles */
+.gauge-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.gauge-needle {
+  transform-origin: bottom center;
+  transition: transform 0.5s ease-out;
+}
+
+/* Risk level colors */
+.risk-stable {
+  color: var(--signal-emerald);
+  text-shadow: 0 0 10px var(--signal-emerald-glow);
+}
+
+.risk-emerging {
+  color: #F59E0B;
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+}
+
+.risk-escalation {
+  color: #F97316;
+  text-shadow: 0 0 10px rgba(249, 115, 22, 0.25);
+}
+
+.risk-panic {
+  color: var(--signal-red);
+  text-shadow: 0 0 10px var(--signal-red-glow);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
