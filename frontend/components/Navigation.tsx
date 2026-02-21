@@ -23,6 +23,12 @@ export default function Navigation() {
     { href: '/dashboard/ecosystem', label: 'Ecosystem', icon: '' },
     { href: '/dashboard/timelines', label: 'Timelines', icon: '' },
     { href: '/dashboard/stress-lab', label: 'Stress Lab', icon: '' },
+    // Phase 8 - Self-Evolving Intelligence
+    { href: '/dashboard/consciousness', label: 'Consciousness', icon: '' },
+    { href: '/dashboard/genome', label: 'Genome', icon: '' },
+    { href: '/dashboard/evolution', label: 'Evolution', icon: '' },
+    { href: '/dashboard/twin', label: 'Digital Twin', icon: '' },
+    { href: '/dashboard/federation', label: 'Federation', icon: '' },
   ];
   
   return (

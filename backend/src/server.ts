@@ -22,6 +22,7 @@ import phase4Routes from './routes/phase4.routes';
 import phase5Routes from './routes/phase5.routes';
 import phase6Routes from './routes/phase6.routes';
 import phase7Routes from './routes/phase7.routes';
+import phase8Routes from './routes/phase8.routes';
 import replayRoutes from './routes/replay.routes';
 
 // Import models to ensure they're registered
@@ -69,6 +70,7 @@ app.use('/api', phase5Routes);
 app.use('/api/replay', replayRoutes);
 app.use('/api', phase6Routes);
 app.use('/api', phase7Routes); // Phase 7 - Strategic Simulation & Meta-Intelligence
+app.use('/api', phase8Routes); // Phase 8 - Self-Evolving Intelligence Architecture
 
 // Health check
 app.get('/health', (req, res) => {

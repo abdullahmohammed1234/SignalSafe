@@ -1473,4 +1473,389 @@ export const api = {
       return null;
     }
   },
+
+  // ======== PHASE 8 - SELF-EVOLVING INTELLIGENCE ========
+
+  // Architecture Evolution
+  async getArchitecture(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/architecture`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting architecture:', error);
+      return null;
+    }
+  },
+
+  async getArchitectureHistory(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/architecture/history`);
+      if (!response.ok) return [];
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting architecture history:', error);
+      return [];
+    }
+  },
+
+  async evolveArchitecture(data: any): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/architecture/evolve`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error evolving architecture:', error);
+      return null;
+    }
+  },
+
+  async simulateArchitectureChange(data: any): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/architecture/simulate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error simulating architecture change:', error);
+      return null;
+    }
+  },
+
+  // Intelligence Genome
+  async getCurrentGenome(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/genome/current`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting current genome:', error);
+      return null;
+    }
+  },
+
+  async getGenomeLineage(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/genome/lineage`);
+      if (!response.ok) return [];
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting genome lineage:', error);
+      return [];
+    }
+  },
+
+  async getGenomeStatistics(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/genome/statistics`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting genome statistics:', error);
+      return null;
+    }
+  },
+
+  // Digital Twin
+  async getTwinState(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/twin/state`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting twin state:', error);
+      return null;
+    }
+  },
+
+  async getTwinAnalytics(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/twin/analytics`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting twin analytics:', error);
+      return null;
+    }
+  },
+
+  async takeTwinSnapshot(label?: string): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/twin/snapshot`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ label }),
+      });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error taking twin snapshot:', error);
+      return null;
+    }
+  },
+
+  async getTwinSnapshots(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/twin/snapshots`);
+      if (!response.ok) return [];
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting twin snapshots:', error);
+      return [];
+    }
+  },
+
+  async injectTwinScenario(scenarioType: string): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/twin/inject-scenario`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scenarioType }),
+      });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error injecting scenario:', error);
+      return null;
+    }
+  },
+
+  // Recursive Optimization
+  async runOptimizationCycle(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/optimization/run`, { method: 'POST' });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error running optimization cycle:', error);
+      return null;
+    }
+  },
+
+  async getOptimizationHistory(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/optimization/history`);
+      if (!response.ok) return [];
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting optimization history:', error);
+      return [];
+    }
+  },
+
+  async getOptimizationStats(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/optimization/stats`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting optimization stats:', error);
+      return null;
+    }
+  },
+
+  // Institutional Memory
+  async getLessons(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/memory/lessons`);
+      if (!response.ok) return [];
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting lessons:', error);
+      return [];
+    }
+  },
+
+  async getMemoryStatistics(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/memory/statistics`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting memory statistics:', error);
+      return null;
+    }
+  },
+
+  // Federated Grid
+  async getFederationStatus(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/federation/status`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting federation status:', error);
+      return null;
+    }
+  },
+
+  async getFederationNodes(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/federation/nodes`);
+      if (!response.ok) return [];
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting federation nodes:', error);
+      return [];
+    }
+  },
+
+  // Cognitive Layer
+  async getCognitiveLayers(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/cognitive/layers`);
+      if (!response.ok) return [];
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting cognitive layers:', error);
+      return [];
+    }
+  },
+
+  async getCognitiveHealth(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/cognitive/health`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting cognitive health:', error);
+      return null;
+    }
+  },
+
+  // Scenario Generator
+  async generateScenario(scenarioType?: string): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/scenarios/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scenarioType }),
+      });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error generating scenario:', error);
+      return null;
+    }
+  },
+
+  async getScenarios(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/scenarios`);
+      if (!response.ok) return [];
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting scenarios:', error);
+      return [];
+    }
+  },
+
+  async getScenarioStatistics(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/scenarios/statistics`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting scenario statistics:', error);
+      return null;
+    }
+  },
+
+  // Integrity Layer
+  async getIntegrityReport(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/integrity`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting integrity report:', error);
+      return null;
+    }
+  },
+
+  async getIntegritySummary(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/integrity/summary`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting integrity summary:', error);
+      return null;
+    }
+  },
+
+  async getGovernanceStatus(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/system/governance`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting governance status:', error);
+      return null;
+    }
+  },
+
+  // Strategic Consciousness
+  async getConsciousnessReport(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/consciousness`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting consciousness report:', error);
+      return null;
+    }
+  },
+
+  async getConsciousnessSnapshot(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/consciousness/snapshot`);
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting consciousness snapshot:', error);
+      return null;
+    }
+  },
+
+  async getConsciousnessComponents(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/consciousness/components`);
+      if (!response.ok) return [];
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting consciousness components:', error);
+      return [];
+    }
+  },
+
+  async getConsciousnessAlerts(): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_URL}/api/consciousness/alerts`);
+      if (!response.ok) return [];
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting consciousness alerts:', error);
+      return [];
+    }
+  },
+
+  // Full Phase 8 Cycle
+  async runPhase8Cycle(): Promise<any> {
+    try {
+      const response = await fetch(`${API_URL}/api/phase8/cycle`, { method: 'POST' });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch (error) {
+      console.error('Error running Phase 8 cycle:', error);
+      return null;
+    }
+  },
 };
